@@ -1,0 +1,78 @@
+<%= render 'shared/page_header', pre_title: "Overview", page_title: "All Taxpayers", has_action: true, action_path: new_taxpayer_path, action_text: "New Taxpayer" %>
+
+<div class="col-sm-6 col-lg-3 mb-4">
+    <div class="card card-sm">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <span class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2"></path><path d="M12 3v3m0 12v3"></path></svg>
+            </span>
+          </div>
+          <div class="col">
+            <div class="font-weight-medium">
+              <%= Taxpayer.count %>
+            </div>
+            <div class="text-muted">
+              Taxpayers
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="card">
+  <div class="table-responsive">
+    <table class="table table-vcenter table-mobile-md card-table table-striped">
+      <thead>
+        <tr>
+          <th>IRD No.</th>
+          <th>First Name</th>
+          <th>Middle Name</th>
+          <th>Surname</th>
+          <th>Address</th>
+          <th>Entity Type</th>
+          <th>Company</th>
+          <th>Active Status</th>
+          <th> </th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @taxpayers.each do |taxpayer| %>
+      <tr>
+        <td> <%= taxpayer.ird_no %> </td>
+        <td class="text-muted"><%= taxpayer.first_name %></td>
+        <td class="text-muted"><%= taxpayer.middle_name %></td>
+        <td class="text-muted"><%= taxpayer.last_name %></td>
+        <td class="text-muted"><%= taxpayer.address %></td>
+        <td class="text-muted"><%= taxpayer.entity_type %></td>
+        <% if taxpayer.company %>
+          <td class="text-muted"><%= taxpayer.company.name %></td>
+        <% else%>
+          <td class="text-muted">No company data</td>
+        <% end %>
+        <td class="text-muted ">
+          <% if taxpayer.active_status == 'Active' %> 
+            <span class="badge bg-success me-1"></span> 
+          <% else %>
+            <span class="badge bg-warning me-1"></span>
+          <% end %>
+          <%= taxpayer.active_status %>
+        </td>
+        <td>
+           <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+           <div class="dropdown-menu dropdown-menu-end" style="">
+              <%= link_to 'View', taxpayer_path(taxpayer), class:'dropdown-item' %>
+              <%= link_to 'Edit', edit_taxpayer_path(taxpayer), class:'dropdown-item' %>
+              <%= link_to "Delete",  taxpayer_path(taxpayer),class:'dropdown-item',  method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+            </div>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

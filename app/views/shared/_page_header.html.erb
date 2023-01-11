@@ -1,0 +1,37 @@
+<div class="page-header mb-4">
+  <div class="row align-items-center">
+    <% if defined?(back_path) %>
+      <div class="col-auto">
+        <%= link_to back_path do  %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+             <line x1="5" y1="12" x2="19" y2="12"></line>
+             <line x1="5" y1="12" x2="11" y2="18"></line>
+             <line x1="5" y1="12" x2="11" y2="6"></line>
+          </svg>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <div class="col">
+      <% if defined?(pre_title) %>
+        <div class="page-pretitle">
+          <%= pre_title %>
+        </div>
+      <% end %>
+      <h2 class="page-title">
+        <%= page_title %>
+      </h2>
+    </div>
+    <% if defined?(action_path) %>
+      <div class="col-auto ms-auto">
+        <div class="btn-list">
+          <%= link_to action_path, class: "btn d-none d-sm-inline-block" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <%= action_text %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

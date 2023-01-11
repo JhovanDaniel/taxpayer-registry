@@ -1,0 +1,71 @@
+<%= render 'shared/page_header', pre_title: 'Manage Taxpayers', page_title: "Taxpayer: #{@taxpayer.first_name} #{@taxpayer.last_name}" , has_action: true, action_path: edit_taxpayer_path, action_text: "Edit Taxpayer", back_path: taxpayers_path %> 
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Taxpayer Details</h4>
+  </div>
+  <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+            <p>
+              <span class="font-weight-bold text-muted">IRD Number:</span><br>
+              <%= @taxpayer.ird_no %>
+            </p>
+           </div>
+           <div class="col-md-4">
+            <p>
+              <span class="font-weight-bold text-muted">Old IRD Number:</span><br>
+              <%= @taxpayer.old_ird_no %>
+            </p>
+           </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                    <span class="font-weight-bold text-muted">First name:</span><br>
+                    <%= @taxpayer.first_name %>
+                </p>
+            </div>
+          
+          <div class="col-md-4">
+            <p>
+              <span class="font-weight-bold text-muted">Middle name:</span><br>
+              <%= @taxpayer.middle_name %>
+            </p>
+          </div>
+          
+          <div class="col-md-4">
+            <p>
+              <span class="font-weight-bold text-muted">Last name:</span><br>
+              <%= @taxpayer.last_name %>
+            </p>
+          </div>
+        </div>  
+
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                  <span class="font-weight-bold text-muted">Address:</span><br>
+                  <%= @taxpayer.address%>
+                </p>
+           </div>
+    
+            <div class="col-md-4">
+                <p>
+                  <span class="font-weight-bold text-muted">Entity Type:</span><br>
+                  <%= @taxpayer.entity_type %>
+                </p>
+            </div>
+    
+            <div class="col-md-4">
+                <p>
+                  <span class="font-weight-bold text-muted">Active Status:</span><br>
+                  <%= @taxpayer.active_status %>
+                </p>
+            </div>
+        </div>
+        <span class="font-weight-bold text-muted">Company:</span><br>
+        <%= link_to @taxpayer.company.name, company_path(@taxpayer.company), class:'badge text-bg-primary' %>
+    </div><!--/.card-body-->
+</div><!--/.card-->

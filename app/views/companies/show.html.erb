@@ -1,0 +1,58 @@
+<%= render 'shared/page_header', pre_title: 'Manage Companies', page_title: "Company: #{@company.name}" ,has_action: true, action_path: edit_company_path, action_text: "Edit Company", back_path: companies_path %> 
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Company Details</h4>
+  </div>
+  <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+            <p>
+              <span class="font-weight-bold text-muted">IRD Number:</span><br>
+              <%= @company.ird_no %>
+            </p>
+           </div>
+           <div class="col-md-4">
+            <p>
+              <span class="font-weight-bold text-muted">PAYE Number:</span><br>
+              <%= @company.paye_no %>
+            </p>
+           </div>
+           
+           <div class="col-md-4">
+                <p>
+                    <span class="font-weight-bold text-muted">Company Name:</span><br>
+                    <%= @company.name %>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                  <span class="font-weight-bold text-muted">Address:</span><br>
+                  <%= @company.address%>
+                </p>
+           </div>
+    
+            <div class="col-md-4">
+                <p>
+                  <span class="font-weight-bold text-muted">Entity Type:</span><br>
+                  <%= @company.entity_type %>
+                </p>
+            </div>
+    
+            <div class="col-md-4">
+                <p>
+                  <span class="font-weight-bold text-muted">Active Status:</span><br>
+                  <%= @company.activity_status %>
+                </p>
+            </div>
+        </div>
+        
+        <span class="font-weight-bold text-muted">Taxpayers:</span><br>
+        <% @company.taxpayers.each do |t| %>
+            <%= link_to t.first_name+ " " +t.last_name, taxpayer_path(t), class:'badge text-bg-primary' %>
+        <% end %>
+    </div><!--/.card-body-->
+</div><!--/.card-->

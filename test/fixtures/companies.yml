@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ird_no: MyString
+  name: MyString
+  address: MyString
+  entity_type: MyString
+  activity_status: MyString
+  paye_no: 1
+
+two:
+  ird_no: MyString
+  name: MyString
+  address: MyString
+  entity_type: MyString
+  activity_status: MyString
+  paye_no: 1
