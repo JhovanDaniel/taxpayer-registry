@@ -1,4 +1,5 @@
 class Taxpayer < ApplicationRecord
+    include ApplicationHelper
     
     belongs_to :company
     

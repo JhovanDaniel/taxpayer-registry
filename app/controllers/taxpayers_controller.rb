@@ -1,6 +1,6 @@
 class TaxpayersController < ApplicationController
     
-    before_action :set_taxpayer, only: [:show, :edit, :update, :destroy, :company_taxpayers]
+    before_action :set_taxpayer, only: [:show, :edit, :update, :destroy]
 
     
     def new
@@ -43,6 +43,12 @@ class TaxpayersController < ApplicationController
         redirect_to taxpayers_path
     end
     
+    def datatable
+        respond_to do |format|
+            format.json { render json: TaxpayerDatatable.new(params, view_context: view_context) }
+        end
+    end
+    
     
     private
     
@@ -51,7 +57,7 @@ class TaxpayersController < ApplicationController
     end
     
     def taxpayer_params
-        params.require(:taxpayer).permit(:ird_no, :old_ird_no, :first_name, :middle_name, :last_name, :address, :entity_type, :active_status, :company_id, year_ids: [])
+        params.require(:taxpayer).permit(:ird_no, :old_ird_no, :first_name, :middle_name, :last_name, :address, :entity_type, :active_status, :company_id)
     end
     
     def redirect_to_index

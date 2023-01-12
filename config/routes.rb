@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  concern :with_datatable do
+    post 'datatable', on: :collection
+  end
   
   root "pages#home"
   
-  resources :taxpayers
-  resources :companies
+  resources :taxpayers, concerns: [:with_datatable] 
+  resources :companies, concerns: [:with_datatable] 
 end

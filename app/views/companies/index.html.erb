@@ -25,10 +25,11 @@
 
 <div class="card">
   <div class="table-responsive">
-    <table class="table table-vcenter table-mobile-md card-table table-striped">
+    <table id="company-datatable" class="table table-vcenter card-table table-striped text-nowrap center" data-source="<%= datatable_companies_path(format: :json) %>" style='width:100%;' >
       <thead>
         <tr>
           <th>IRD No.</th>
+          <th>PAYE No.</th>
           <th>Name</th>
           <th>Address</th>
           <th>Entity Type</th>
@@ -38,30 +39,7 @@
       </thead>
       
       <tbody>
-        <% @companies.each do |company| %>
-      <tr>
-        <td> <%= company.ird_no %> </td>
-        <td class="text-muted"><%= company.name %></td>
-        <td class="text-muted"><%= company.address %></td>
-        <td class="text-muted"><%= company.entity_type %></td>
-        <td class="text-muted ">
-          <% if company.activity_status == 'Active' %> 
-            <span class="badge bg-success me-1"></span> 
-          <% else %>
-            <span class="badge bg-warning me-1"></span>
-          <% end %>
-          <%= company.activity_status %>
-        </td>
-        <td>
-           <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
-           <div class="dropdown-menu dropdown-menu-end" style="">
-              <%= link_to 'View', company_path(company), class:'dropdown-item' %>
-              <%= link_to 'Edit', edit_company_path(company), class:'dropdown-item' %>
-              <%= link_to "Delete",  company_path(company),class:'dropdown-item',  method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-            </div>
-        </td>
-      </tr>
-      <% end %>
+        
       </tbody>
     </table>
   </div>

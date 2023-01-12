@@ -32,6 +32,8 @@ gem "jbuilder"
 
 gem 'simple_form'
 
+gem 'ajax-datatables-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

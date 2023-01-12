@@ -40,6 +40,12 @@ class CompaniesController < ApplicationController
         redirect_to companies_path
     end
     
+    def datatable
+        respond_to do |format|
+            format.json { render json: CompanyDatatable.new(params, view_context: view_context) }
+        end
+    end
+    
      private
     
     def set_company
