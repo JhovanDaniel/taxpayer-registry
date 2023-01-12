@@ -1,5 +1,6 @@
 class TaxpayersController < ApplicationController
     
+    before_action :authenticate_user!
     before_action :set_taxpayer, only: [:show, :edit, :update, :destroy]
 
     

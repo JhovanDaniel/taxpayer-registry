@@ -7,3 +7,4 @@ import * as datatables from 'datatables.net-bs4'
 
 require('./taxpayer-datatable')
 require('./company-datatable')
+require('./user-datatable')
