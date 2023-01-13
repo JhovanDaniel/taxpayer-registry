@@ -10,11 +10,14 @@ class TaxpayersController < ApplicationController
     
     def create
         @taxpayer = Taxpayer.new(taxpayer_params)
-        if @taxpayer.save
-            redirect_to taxpayers_path
-            flash[:notice] = "Taxpayer was created successfully"
-        else 
-            render 'new'
+        respond_to do |format|
+            if @taxpayer.save
+                format.html { redirect_to taxpayers_path, notice: "Taxpayer was successfully created." }
+                format.json { render :show, status: :created, location: @taxpayer }
+            else 
+                format.html { render :new, status: :unprocessable_entity }
+                format.json { render json: @taxpayer.errors, status: :unprocessable_entity }
+            end
         end
     end
     
@@ -31,11 +34,14 @@ class TaxpayersController < ApplicationController
     end
     
     def update
-        if @taxpayer.update(taxpayer_params)
-            flash[:notice] = "Taxpayer was updated successfully"
-            redirect_to @taxpayer
-        else
-            render 'edit'
+        respond_to do |format|
+            if @taxpayer.update(taxpayer_params)
+                format.html { redirect_to taxpayers_path, notice: 'Taxpayer was successfully udpdated' }
+                format.json { render :show, status: :ok, location: @taxpayer }
+            else
+                format.html { render :edit, status: :unprocessable_entity }
+                format.json { render json: @taxpayer.errors, status: :unprocessable_entity }
+            end    
         end
     end
     

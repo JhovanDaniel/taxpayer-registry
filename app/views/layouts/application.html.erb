@@ -11,6 +11,7 @@
   </head>
 
   <body class="antialiased d-flex flex-column h-100">
+    <%= toastr_flash %>
     <div class="wrapper">
       <% if current_user %>
         <%= render 'shared/logged_in_navbar' %>

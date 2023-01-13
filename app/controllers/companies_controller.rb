@@ -13,11 +13,14 @@ class CompaniesController < ApplicationController
     
     def create
         @company = Company.new(company_params)
-        if @company.save
-            redirect_to companies_path
-            flash[:notice] = "Company was created successfully"
-        else 
-            render 'new'
+        respond_to do |format|
+            if @company.save
+                format.html { redirect_to companies_path, notice: "Company was successfully created." }
+                format.json { render :show, status: :created, location: @company }
+            else 
+                format.html { render :new, status: :unprocessable_entity }
+                format.json { render json: @company.errors, status: :unprocessable_entity }
+            end
         end
     end
     
@@ -25,11 +28,14 @@ class CompaniesController < ApplicationController
     end
     
     def update
-        if @company.update(company_params)
-            flash[:notice] = "Company was updated successfully"
-            redirect_to @company
-        else
-            render 'edit'
+        respond_to do |format|
+            if @company.update(company_params)
+                format.html { redirect_to companies_path, notice: 'Company was successfully udpdated' }
+                format.json { render :show, status: :ok, location: @company }
+            else
+                format.html { render :edit, status: :unprocessable_entity }
+                format.json { render json: @company.errors, status: :unprocessable_entity }
+            end    
         end
     end
     

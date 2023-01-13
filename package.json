@@ -13,7 +13,8 @@
     "datatables.net-bs5": "^1.13.1",
     "esbuild": "^0.16.16",
     "jquery": "^3.6.3",
-    "sass": "^1.57.1"
+    "sass": "^1.57.1",
+    "toastr": "^2.1.4"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
